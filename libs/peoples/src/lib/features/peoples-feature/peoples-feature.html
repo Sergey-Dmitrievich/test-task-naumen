@@ -1,0 +1,53 @@
+<div class="peoples-container">
+  <div class="search-section">
+    <div class="search" [formGroup]="searchForm">
+      <input
+        type="text"
+        formControlName="name"
+        placeholder="Поиск по ФИО"
+        class="search-input">
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="users-table">
+      <thead>
+        <tr>
+          <th class="not">ID</th>
+          <th class="not">ФИО</th>
+          <th class="not">Почта</th>
+          <th class="not filter-header" (click)="filter()">
+            Статус
+            <span class="filter-indicator">
+              @if (currentFilter === 'all') {
+                (Все)
+              }
+              @else if (currentFilter === 'active') {
+                (Активные)
+              }
+              @else {
+                (Неактивные)
+              }
+            </span>
+            <img src="/arrows-icon.png" alt="filter" class="filter-icon">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(client of filteredUsers; track client.id){
+          <tr (click)="updateNowClient(client.id)" class="user-row">
+            <td>{{ client.id }}</td>
+            <td>{{ client.name }}</td>
+            <td>{{ client.email }}</td>
+            <td>
+              <span class="status" [class.active]="client.active" [class.inactive]="!client.active">
+                {{ client.active ? 'Активный' : 'Не активный' }}
+              </span>
+            </td>
+          </tr>
+        }
+
+      </tbody>
+    </table>
+  </div>
+</div>

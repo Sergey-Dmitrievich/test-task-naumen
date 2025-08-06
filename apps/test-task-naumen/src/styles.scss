@@ -1,0 +1,90 @@
+// Сброс стилей и базовые настройки
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+  background-color: #fafafa;
+  min-height: 100vh;
+}
+
+// Ссылки
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+// Кнопки
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: 2px solid #4CAF50;
+    outline-offset: 2px;
+  }
+}
+
+// Инпуты
+input {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+// Таблицы
+table {
+  border-spacing: 0;
+}
+
+// Анимации
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Утилитарные классы
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+// Скроллбар для webkit браузеров
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9e9e9e;
+  border-radius: 4px;
+
+  &:hover {
+    background: #757575;
+  }
+}
