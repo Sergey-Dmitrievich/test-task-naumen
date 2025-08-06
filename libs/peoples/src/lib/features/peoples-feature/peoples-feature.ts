@@ -6,7 +6,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { combineLatest, startWith } from 'rxjs';
+import { catchError, combineLatest, debounceTime, distinctUntilChanged, of, startWith } from 'rxjs';
 
 
 
@@ -34,6 +34,10 @@ export class PeoplesFeature implements OnInit {
   ngOnInit(){
     this.peoplesService.getUsersInfo()
     .pipe(
+      catchError(error => {
+        alert('Ошибка ' + error)
+        return of([])
+      }),
       takeUntilDestroyed(this.ref)
     )
     .subscribe(val => {
@@ -44,6 +48,12 @@ export class PeoplesFeature implements OnInit {
     this.searchForm.controls.name.valueChanges
     .pipe(
       startWith(''),
+      // debounceTime(100),
+      // distinctUntilChanged(),
+      catchError(error => {
+        alert('Ошибка ' + error)
+        return of('')
+      }),
       takeUntilDestroyed(this.ref)
     )
     .subscribe(val => {
